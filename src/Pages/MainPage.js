@@ -4,7 +4,7 @@ import Draggable,{DraggableCore} from "react-draggable";
 export class MainPage extends React.Component{
     constructor(props){
         super(props);
-        this.handleMenuClick=this.bind(handleMenuClick);
+        this.handleMenuClick=this.handleMenuClick.bind(this);
     }
     handleMenuClick(){
        return; 
