@@ -25,9 +25,16 @@ export class MainPage extends React.Component{
         event.currentTarget.remove();
         for (var key in this.formEntries){
             if(this.formEntries[key].length!=0){
+            if(key==="Image"){
+                var b=document.createElement('img');
+                b.src=this.formEntries[key];
+                parent.appendChild(b);
+            }
+            else{
             var b=document.createElement('li');
             b.innerHTML=`${key}: ${this.formEntries[key]}`;
             parent.appendChild(b);
+            }
             }
         }
         var d=document.createElement('button');
@@ -117,8 +124,9 @@ export class MainPage extends React.Component{
     <input name="Transport"type="text"></input><label htmlFor="Image">Photo</label><input type="text" name="Image"></input>
     <label htmlFor="Date and Time">Time and Date</label><input type="text" name="Date and Time"></input><div><input type="text" name="From"></input> to <input name="To" type="text"></input></div><label htmlFor="Travel Reminders">Reminders</label><input type="text" name="Travel Reminders"></input><label htmlFor="Travel Seats">Seats</label><input name="Travel Seats"></input><input type="submit" ></input></form></li></Draggable>);}
     else if(a==="photo"){return (<Draggable><li className="photoBlock"key={h}><h1>Image</h1><form onSubmit={this.handlePhotoSubmit}><label htmlFor="Pictures"></label><input name="Pictures" type="text"></input></form></li></Draggable>);}
-    else{return (<Draggable><li className="destBlock"key={h}><h1>Destination</h1><form onSubmit={this.handleSightSeeingSubmit}><label htmlFor="SightSeeing Site">Site Photo</label><input name="SightSeeing Site" type="text"></input><label htmlFor="Tickets and Prices">Tickets and Prices</label><input name="Tickets and Prices" type="text"></input><input type="submit"></input></form></li></Draggable>);}
+    else{return (<Draggable><li className="destBlock"key={h}><div style={{borderRadius:"50%",backgroundColor:"black",width:"50px",height:'50px',marginLeft:"auto",marginRight:"auto",position:'relative',top:"-20px"}}>  </div><h1>Destination</h1><form onSubmit={this.handleSightSeeingSubmit}><label htmlFor="SightSeeing Site">Site Photo</label><input name="SightSeeing Site" type="text"></input><label htmlFor="Tickets and Prices">Tickets and Prices</label><input name="Tickets and Prices" type="text"></input><input type="submit"></input></form></li></Draggable>);}
 })}</ul>
+<svg width="300" height="300"><line x1="30" y1="30" x2="90" y2="60" stroke="black"/></svg>
 </>
         );
 
