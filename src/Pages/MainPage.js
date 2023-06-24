@@ -12,13 +12,14 @@ export class MainPage extends React.Component{
        else{
         this.setState({menuVisibility:true});
        }
+       document.getElementById("Menu").style.visibility=this.state.menuVisibility;
        alert('Hi');
     }
     render(){
         return (
             <>
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
-        <div style={{invisible:this.state.menuVisibility}} >Menu</div>
+        <div id="Menu" >Menu</div>
 <Draggable><h1>Hi</h1></Draggable>
 </>
         );
