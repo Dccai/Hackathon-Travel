@@ -6,7 +6,7 @@ export class MainPage extends React.Component{
         super(props);
         this.handleMenuClick=this.handleMenuClick.bind(this);
         this.handleTravelClick=this.handleTravelClick.bind(this);
-        this.state={menuVisibility:0,travelBlocksToAdd:[]};
+        this.state={menuVisibility:0,travelBlocksToAdd:["travel","travel"]};
         this.placeholderBlock=undefined;
     }
     handleMenuClick(){
@@ -17,8 +17,10 @@ export class MainPage extends React.Component{
        document.getElementById("Menu").style.opacity=this.state.menuVisibility;
     }
     handleTravelClick(){
-        this.state.travelBlocksToAdd.push("travel");
-        alert(this.travelBlocksToAdd);
+        this.placeholderBlock=this.state.travelBlocksToAdd;
+        this.placeholderBlock.push("travel");
+        this.setState({travelBlocksToAdd:this.placeholderBlock});
+        alert(this.state.travelBlocksToAdd);
     }
     render(){
         return (
