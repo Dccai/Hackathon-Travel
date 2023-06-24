@@ -9,13 +9,13 @@ export class MainPage extends React.Component{
         this.handleTravelClick=this.handleTravelClick.bind(this);
         this.handlePhotoClick=this.handlePhotoClick.bind(this);
         this.handleDestinationBlock=this.handleDestinationBlock.bind(this);
-        this.state={menuVisibility:0,travelBlocksToAdd:["travel","travel"]};
+        this.state={menuVisibility:0,travelBlocksToAdd:["travel","travel"],menuItemLoc:0};
         this.placeholderBlock=undefined;
     }
     handleMenuClick(){
-       if(this.state.menuVisibility===0){this.setState({menuVisibility:100})}
+       if(this.state.menuVisibility===0){this.setState({menuVisibility:100,menuItemLoc:-200})}
        else{
-        this.setState({menuVisibility:0});
+        this.setState({menuVisibility:0,menuItemLoc:0});
        }
        document.getElementById("Menu").style.opacity=this.state.menuVisibility;
     }
@@ -38,7 +38,7 @@ export class MainPage extends React.Component{
         return (
             <>
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
-        <div id="Menu" style={{color:"blue"}} ><button style={{color:"red"}} onClick={this.handleTravelClick}>Travel Block</button><button onClick={this.handlePhotoClick}>Picture Block</button><button onClick={this.handleDestinationBlock}>Destination Block</button></div>
+        <div style={{position:"static"}} id="Menu"  ><button style={{position:"relative",color:"red",top:`${this.state.menuItemLoc}px`}} onClick={this.handleTravelClick}>Travel Block</button><button style={{position:"relative",color:"blue",top:`${this.state.menuItemLoc}px`}} onClick={this.handlePhotoClick}>Picture Block</button><button style={{position:"relative",color:"green",top:`${this.state.menuItemLoc}px`}} onClick={this.handleDestinationBlock}>Destination Block</button></div>
 <Draggable><h1>Hi</h1></Draggable>
 <ul>{this.state.travelBlocksToAdd.map((a,h)=>{
     if(a==="travel"){return <Draggable><li key={h}><h1>Travel</h1></li></Draggable>;}
