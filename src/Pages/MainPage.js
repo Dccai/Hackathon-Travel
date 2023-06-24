@@ -6,7 +6,7 @@ export class MainPage extends React.Component{
         super(props);
         this.handleMenuClick=this.handleMenuClick.bind(this);
         this.handleTravelClick=this.handleTravelClick.bind(this);
-        this.state={menuVisibility:0};
+        this.state={menuVisibility:0,blocksToAdd:[]};
     }
     handleMenuClick(){
        if(this.state.menuVisibility===0){this.setState({menuVisibility:100})}
@@ -16,15 +16,15 @@ export class MainPage extends React.Component{
        document.getElementById("Menu").style.opacity=this.state.menuVisibility;
     }
     handleTravelClick(){
-        //document.createElement()
-        return;
+        this.state.blocksToAdd.push(React.createElement("div",{style:{color:"red"}},<><input></input></>));
     }
     render(){
         return (
             <>
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
-        <div id="Menu" style={{backgroundColor:"blue"}} ><button style={{color:"red"}} onClick={this.handleTravelClick}>Travel Block</button></div>
+        <div id="Menu" style={{color:"blue"}} ><button style={{color:"red"}} onClick={this.handleTravelClick}>Travel Block</button></div>
 <Draggable><h1>Hi</h1></Draggable>
+{this.state.blocksToAdd.map(a=>{return <Draggable>{a}</Draggable>})}
 </>
         );
 
