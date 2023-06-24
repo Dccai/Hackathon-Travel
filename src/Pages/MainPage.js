@@ -1,6 +1,7 @@
 
 import React from "react";
 import Draggable,{DraggableCore} from "react-draggable";
+import { AddBlock } from "../Components/AddBlock";
 export class MainPage extends React.Component{
     constructor(props){
         super(props);
@@ -16,8 +17,7 @@ export class MainPage extends React.Component{
        document.getElementById("Menu").style.opacity=this.state.menuVisibility;
     }
     handleTravelClick(){
-        this.state.blocksToAdd.push(React.createElement("div",{style:{color:"red"}},<><input>Hi</input></>));
-        alert(this.state.blocksToAdd);
+       <AddBlock type="red"/>
     }
     render(){
         return (
@@ -25,7 +25,7 @@ export class MainPage extends React.Component{
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
         <div id="Menu" style={{color:"blue"}} ><button style={{color:"red"}} onClick={this.handleTravelClick}>Travel Block</button></div>
 <Draggable><h1>Hi</h1></Draggable>
-{this.state.blocksToAdd.map(a=>{return <Draggable>{a}</Draggable>})}
+
 </>
         );
 
