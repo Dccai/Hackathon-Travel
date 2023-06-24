@@ -8,5 +8,5 @@ if(props.type==="red"){
 }
 else{ let newBlock=React.createElement("div",{style:{color:"blue"}},<><p>Hello tHis is a blue block</p></>)
 addBlocks(oldArray=>[...oldArray,newBlock]);}
-return (<><ul>{blocks.map(a=><Draggable>{<li>a</li>}</Draggable>)}</ul></>);
+return (<><ul>{blocks.map(a=><Draggable><li>{a}</li></Draggable>)}</ul></>);
 }
