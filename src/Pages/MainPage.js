@@ -22,9 +22,11 @@ export class MainPage extends React.Component{
         var parent=event.currentTarget.parentNode;
         event.currentTarget.remove();
         for (var key in this.formEntries){
-            var b=document.createElement('p');
-            b.innerHTML=`${this.formEntries[key]}`;
+            if(this.formEntries[key].length!=0){
+            var b=document.createElement('li');
+            b.innerHTML=`${key}: ${this.formEntries[key]}`;
             parent.appendChild(b);
+            }
         }
     }
     handleMenuClick(){
@@ -55,9 +57,9 @@ export class MainPage extends React.Component{
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
         <div style={{position:"static"}} id="Menu"  ><button style={{position:"relative",color:"red",top:`${this.state.menuItemLoc}px`}} onClick={this.handleTravelClick}>Travel Block</button><button style={{position:"relative",color:"blue",top:`${this.state.menuItemLoc}px`}} onClick={this.handlePhotoClick}>Picture Block</button><button style={{position:"relative",color:"green",top:`${this.state.menuItemLoc}px`}} onClick={this.handleDestinationBlock}>Destination Block</button></div>
 <ul>{this.state.travelBlocksToAdd.map((a,h)=>{
-    if(a==="travel"){return (<Draggable><li className="travelBlock"key={h}><h1>Travel</h1><form onSubmit={this.handleTravelSubmit}><label htmlFor="travelTransport">Transportation</label>
-    <input name="travelTransport"type="text"></input><label htmlFor="travelImage">Photo</label><input type="text" name="travelImage"></input>
-    <label htmlFor="travelDateTime">Time and Date</label><input type="text" name="travelDateTime"></input><div><input type="text" name="from"></input> to <input name="to" type="text"></input></div><input type="submit" ></input></form></li></Draggable>);}
+    if(a==="travel"){return (<Draggable><li className="travelBlock"key={h}><h1>Travel</h1><form onSubmit={this.handleTravelSubmit}><label htmlFor="Transport">Transportation</label>
+    <input name="Transport"type="text"></input><label htmlFor="Image">Photo</label><input type="text" name="Image"></input>
+    <label htmlFor="Date and Time">Time and Date</label><input type="text" name="Date and Time"></input><div><input type="text" name="From"></input> to <input name="To" type="text"></input></div><input type="submit" ></input></form></li></Draggable>);}
     else if(a==="photo"){return <Draggable><li className="photoBlock"key={h}><h1>Image</h1></li></Draggable>;}
     else{return <Draggable><li className="destBlock"key={h}><h1>Destination</h1></li></Draggable>;}
 })}</ul>
