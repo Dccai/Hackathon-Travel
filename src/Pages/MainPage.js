@@ -16,7 +16,7 @@ export class MainPage extends React.Component{
        document.getElementById("Menu").style.opacity=this.state.menuVisibility;
     }
     handleTravelClick(){
-        this.state.blocksToAdd.push(React.createElement("div",{style:{color:"red"}},<><input></input></>));
+        this.state.blocksToAdd.push(React.createElement("div",{style:{color:"red"}},<><input>Hi</input></>));
         alert(this.state.blocksToAdd);
     }
     render(){
