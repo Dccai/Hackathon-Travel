@@ -19,6 +19,7 @@ export class MainPage extends React.Component{
     handleTravelClick(){
         this.placeholderBlock=React.createElement("div",{style:{color:"red"}},<p></p>);
         this.state.travelBlocksToAdd.push(this.placeholderBlock);
+        alert(this.state.travelBlocksToAdd);
     }
     render(){
         return (
