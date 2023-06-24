@@ -5,7 +5,7 @@ export class MainPage extends React.Component{
     constructor(props){
         super(props);
         this.handleMenuClick=this.handleMenuClick.bind(this);
-        this.state={menuVisibility:true};
+        this.state={menuVisibility:false};
     }
     handleMenuClick(){
        if(this.state.menuVisibility){this.setState({menuVisibility:false})}
