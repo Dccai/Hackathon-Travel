@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { ReactDOM } from "react";
+import { ReactDOM } from "react-dom";
 import Draggable,{DraggableCore} from "react-draggable";
 export function AddBlock (props){
 let [blocks,addBlocks]=useState([]);
