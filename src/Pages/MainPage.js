@@ -17,6 +17,7 @@ export class MainPage extends React.Component{
     }
     handleTravelClick(){
         this.state.blocksToAdd.push(React.createElement("div",{style:{color:"red"}},<><input></input></>));
+        alert(this.state.blocksToAdd);
     }
     render(){
         return (
