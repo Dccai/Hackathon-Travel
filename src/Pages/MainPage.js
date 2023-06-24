@@ -18,6 +18,7 @@ export class MainPage extends React.Component{
     }
     handleTravelClick(){
         this.state.travelBlocksToAdd.push("travel");
+        alert(travelBlocksToAdd);
     }
     render(){
         return (
