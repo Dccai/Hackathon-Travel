@@ -17,9 +17,7 @@ export class MainPage extends React.Component{
        document.getElementById("Menu").style.opacity=this.state.menuVisibility;
     }
     handleTravelClick(){
-        this.placeholderBlock=React.createElement("div",{style:{color:"red"}},<p></p>);
-        this.state.travelBlocksToAdd.push(this.placeholderBlock);
-        alert(this.state.travelBlocksToAdd);
+        this.state.travelBlocksToAdd.push("travel");
     }
     render(){
         return (
@@ -27,7 +25,10 @@ export class MainPage extends React.Component{
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
         <div id="Menu" style={{color:"blue"}} ><button style={{color:"red"}} onClick={this.handleTravelClick}>Travel Block</button></div>
 <Draggable><h1>Hi</h1></Draggable>
-<ul>{this.state.travelBlocksToAdd.map((a,h)=><li key={h}>{a}</li>)}</ul>
+<ul>{this.state.travelBlocksToAdd.map((a,h)=>{
+    if(a==="travel"){return <li key={h}><Draggable><h1>Travel</h1></Draggable></li>;}
+    else{return <li key={h}><Draggable><h1>Other</h1></Draggable></li>;}
+})}</ul>
 </>
         );
 
