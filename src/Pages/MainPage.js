@@ -9,8 +9,12 @@ export class MainPage extends React.Component{
         this.handleTravelClick=this.handleTravelClick.bind(this);
         this.handlePhotoClick=this.handlePhotoClick.bind(this);
         this.handleDestinationBlock=this.handleDestinationBlock.bind(this);
+        this.handleTravelSubmit=this.handleTravelSubmit.bind(this);
         this.state={menuVisibility:0,travelBlocksToAdd:["travel","travel"],menuItemLoc:0};
         this.placeholderBlock=undefined;
+    }
+    handleTravelSubmit(event){
+        event.preventDefault();
     }
     handleMenuClick(){
        if(this.state.menuVisibility===0){this.setState({menuVisibility:100,menuItemLoc:-200})}
@@ -40,7 +44,9 @@ export class MainPage extends React.Component{
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
         <div style={{position:"static"}} id="Menu"  ><button style={{position:"relative",color:"red",top:`${this.state.menuItemLoc}px`}} onClick={this.handleTravelClick}>Travel Block</button><button style={{position:"relative",color:"blue",top:`${this.state.menuItemLoc}px`}} onClick={this.handlePhotoClick}>Picture Block</button><button style={{position:"relative",color:"green",top:`${this.state.menuItemLoc}px`}} onClick={this.handleDestinationBlock}>Destination Block</button></div>
 <ul>{this.state.travelBlocksToAdd.map((a,h)=>{
-    if(a==="travel"){return <Draggable><li className="travelBlock"key={h}><h1>Travel</h1></li></Draggable>;}
+    if(a==="travel"){return (<Draggable><li className="travelBlock"key={h}><h1>Travel</h1><form onSubmit={this.handleTravelSubmit}><label htmlFor="travelTransport">Transportation</label>
+    <input name="travelTransport"type="text"></input><label htmlFor="travelImage">Photo</label><input type="text" name="travelImage"></input>
+    <label htmlFor="travelDateTime">Time and Date</label><input type="text"></input><div><input type="text"></input> to <input type="text"></input></div><input type="submit" ></input></form></li></Draggable>);}
     else if(a==="photo"){return <Draggable><li className="photoBlock"key={h}><h1>Image</h1></li></Draggable>;}
     else{return <Draggable><li className="destBlock"key={h}><h1>Destination</h1></li></Draggable>;}
 })}</ul>
