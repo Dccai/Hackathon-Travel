@@ -12,6 +12,7 @@ export class MainPage extends React.Component{
        else{
         this.setState({menuVisibility:true});
        }
+       alert('Hi');
     }
     render(){
         return (
