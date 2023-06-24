@@ -1,7 +1,7 @@
 ul{
     list-style-type:none;
 }
-li .travelBlock{
+.travelBlock{
     list-style-type:none;
     width:100;
     top:50%;
@@ -9,7 +9,7 @@ li .travelBlock{
     margin-right: auto;
     position:absolute;
 }
-li .photoBlock{
+.photoBlock{
     list-style-type:none;
     width:100;
     top:50%;
@@ -17,7 +17,7 @@ li .photoBlock{
     margin-right: auto;
     position:absolute;
 }
-li .destBlock{
+.destBlock{
     list-style-type:none;
     width:100;
     top:50%;
