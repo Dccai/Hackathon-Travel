@@ -11,6 +11,7 @@ export class MainPage extends React.Component{
         this.handleDestinationBlock=this.handleDestinationBlock.bind(this);
         this.handleTravelSubmit=this.handleTravelSubmit.bind(this);
         this.handlePhotoSubmit=this.handlePhotoSubmit.bind(this);
+        this.handleSightSeeingSubmit=this.handleSightSeeingSubmit.bind(this);
         this.state={menuVisibility:0,travelBlocksToAdd:["travel","travel"],menuItemLoc:0};
         this.placeholderBlock=undefined;
         this.formData=undefined;
@@ -29,8 +30,12 @@ export class MainPage extends React.Component{
             parent.appendChild(b);
             }
         }
+        var d=document.createElement('button');
+        d.onclick=function(e){e.currentTarget.parentNode.remove()};
+        d.innerHTML="Delete";
+        parent.appendChild(d);
     }
-    handlePhotoSubmit(event){
+    handleSightSeeingSubmit(event){
         event.preventDefault();
         this.formPlaceHolder=new FormData(event.currentTarget);
         this.formEntries=Object.fromEntries(this.formPlaceHolder);
@@ -38,7 +43,7 @@ export class MainPage extends React.Component{
         event.currentTarget.remove();
         for (var key in this.formEntries){
             if(this.formEntries[key].length!=0){
-            if(key==="Landmark-Image"){
+            if(key==="SightSeeing Site"){
                 var b=document.createElement('img');
                 b.src=this.formEntries[key];
                 parent.appendChild(b);
@@ -50,6 +55,35 @@ export class MainPage extends React.Component{
             }
             }
         }
+        var d=document.createElement('button');
+        d.onclick=function(e){e.currentTarget.parentNode.remove()};
+        d.innerHTML="Delete";
+        parent.appendChild(d);   
+    }
+    handlePhotoSubmit(event){
+        event.preventDefault();
+        this.formPlaceHolder=new FormData(event.currentTarget);
+        this.formEntries=Object.fromEntries(this.formPlaceHolder);
+        var parent=event.currentTarget.parentNode;
+        event.currentTarget.remove();
+        for (var key in this.formEntries){
+            if(this.formEntries[key].length!=0){
+            if(key==="Pictures"){
+                var b=document.createElement('img');
+                b.src=this.formEntries[key];
+                parent.appendChild(b);
+            }
+            else{
+            var b=document.createElement('li');
+            b.innerHTML=`${key}: ${this.formEntries[key]}`;
+            parent.appendChild(b);
+            }
+            }
+        }
+        var d=document.createElement('button');
+        d.onclick=function(e){e.currentTarget.parentNode.remove()};
+        d.innerHTML="Delete";
+        parent.appendChild(d);
     }
     handleMenuClick(){
        if(this.state.menuVisibility===0){this.setState({menuVisibility:100,menuItemLoc:-200})}
@@ -82,8 +116,8 @@ export class MainPage extends React.Component{
     if(a==="travel"){return (<Draggable><li className="travelBlock"key={h}><h1>Travel</h1><form onSubmit={this.handleTravelSubmit}><label htmlFor="Transport">Transportation</label>
     <input name="Transport"type="text"></input><label htmlFor="Image">Photo</label><input type="text" name="Image"></input>
     <label htmlFor="Date and Time">Time and Date</label><input type="text" name="Date and Time"></input><div><input type="text" name="From"></input> to <input name="To" type="text"></input></div><label htmlFor="Travel Reminders">Reminders</label><input type="text" name="Travel Reminders"></input><label htmlFor="Travel Seats">Seats</label><input name="Travel Seats"></input><input type="submit" ></input></form></li></Draggable>);}
-    else if(a==="photo"){return (<Draggable><li className="photoBlock"key={h}><h1>Image</h1><form onSubmit={this.handlePhotoSubmit}><label htmlFor="Landmark-Image"></label><input name="Landmark-Image" type="text"></input></form></li></Draggable>);}
-    else{return <Draggable><li className="destBlock"key={h}><h1>Destination</h1></li></Draggable>;}
+    else if(a==="photo"){return (<Draggable><li className="photoBlock"key={h}><h1>Image</h1><form onSubmit={this.handlePhotoSubmit}><label htmlFor="Pictures"></label><input name="Pictures" type="text"></input></form></li></Draggable>);}
+    else{return (<Draggable><li className="destBlock"key={h}><h1>Destination</h1><form onSubmit={this.handleSightSeeingSubmit}><label htmlFor="SightSeeing Site">Site Photo</label><input name="SightSeeing Site" type="text"></input><label htmlFor="Tickets and Prices">Tickets and Prices</label><input name="Tickets and Prices" type="text"></input><input type="submit"></input></form></li></Draggable>);}
 })}</ul>
 </>
         );
