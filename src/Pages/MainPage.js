@@ -23,7 +23,7 @@ export class MainPage extends React.Component{
         return (
             <>
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
-        <div id="Menu" style={{color:blue}} ><button onClick={this.handleTravelClick}>Travel Block</button></div>
+        <div id="Menu" style={{color:"blue"}} ><button onClick={this.handleTravelClick}>Travel Block</button></div>
 <Draggable><h1>Hi</h1></Draggable>
 </>
         );
