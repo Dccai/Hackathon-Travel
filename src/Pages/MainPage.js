@@ -5,15 +5,15 @@ export class MainPage extends React.Component{
     constructor(props){
         super(props);
         this.handleMenuClick=this.handleMenuClick.bind(this);
-        this.state={menuVisibility:false};
+        this.state={menuVisibility:0};
     }
     handleMenuClick(){
-       if(this.state.menuVisibility){this.setState({menuVisibility:false})}
+       if(this.state.menuVisibility===0){this.setState({menuVisibility:100})}
        else{
-        this.setState({menuVisibility:true});
+        this.setState({menuVisibility:0});
        }
        alert(this.state.menuVisibility);
-       document.getElementById("Menu").style.visibility=this.state.menuVisibility;
+       document.getElementById("Menu").style.opacity=this.state.menuVisibility;
        alert('Hi');
     }
     render(){
