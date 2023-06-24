@@ -39,7 +39,6 @@ export class MainPage extends React.Component{
             <>
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
         <div style={{position:"static"}} id="Menu"  ><button style={{position:"relative",color:"red",top:`${this.state.menuItemLoc}px`}} onClick={this.handleTravelClick}>Travel Block</button><button style={{position:"relative",color:"blue",top:`${this.state.menuItemLoc}px`}} onClick={this.handlePhotoClick}>Picture Block</button><button style={{position:"relative",color:"green",top:`${this.state.menuItemLoc}px`}} onClick={this.handleDestinationBlock}>Destination Block</button></div>
-<Draggable><h1>Hi</h1></Draggable>
 <ul>{this.state.travelBlocksToAdd.map((a,h)=>{
     if(a==="travel"){return <Draggable><li className="travelBlock"key={h}><h1>Travel</h1></li></Draggable>;}
     else if(a==="photo"){return <Draggable><li className="photoBlock"key={h}><h1>Image</h1></li></Draggable>;}
