@@ -12,9 +12,7 @@ export class MainPage extends React.Component{
        else{
         this.setState({menuVisibility:0});
        }
-       alert(this.state.menuVisibility);
        document.getElementById("Menu").style.opacity=this.state.menuVisibility;
-       alert('Hi');
     }
     render(){
         return (
