@@ -1,7 +1,23 @@
 ul{
     list-style-type:none;
 }
-li{
+li .travelBlock{
+    list-style-type:none;
+    width:100;
+    top:50%;
+    margin-left:auto;
+    margin-right: auto;
+    position:absolute;
+}
+li .photoBlock{
+    list-style-type:none;
+    width:100;
+    top:50%;
+    margin-left:auto;
+    margin-right: auto;
+    position:absolute;
+}
+li .destBlock{
     list-style-type:none;
     width:100;
     top:50%;
