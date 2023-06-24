@@ -25,7 +25,7 @@ export class MainPage extends React.Component{
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
         <div id="Menu" style={{color:"blue"}} ><button style={{color:"red"}} onClick={this.handleTravelClick}>Travel Block</button></div>
 <Draggable><h1>Hi</h1></Draggable>
-<AddBlock/>
+<AddBlock type="red"/>
 
 </>
         );
