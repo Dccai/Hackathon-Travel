@@ -9,7 +9,10 @@ ul{
     margin-right: auto;
     position:absolute;
     background-color: red;
+    
+   
 }
+
 .photoBlock{
     list-style-type:none;
     width:100;
