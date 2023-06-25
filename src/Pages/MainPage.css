@@ -3,14 +3,19 @@ ul{
 }
 li{
     list-style-type:square;
+    
 }
 ul input {
 text-overflow:inherit;
 }
+.spawnIn{
+    position: absolute;
+    color:red;
+}
 .travelBlock{
     list-style-type:none;
     width: 250px;
-    top:50%;
+    top:5%;
     margin-left: auto;
     margin-right: auto;
     position:absolute;
@@ -19,7 +24,7 @@ text-overflow:inherit;
 .photoBlock{
     list-style-type:none;
     width:100;
-    top:50%;
+    top:5%;
     margin-left:auto;
     margin-right: auto;
     position:absolute;
@@ -28,7 +33,7 @@ text-overflow:inherit;
 .destBlock{
     list-style-type:none;
     width:100;
-    top:50%;
+    top:5%;
     margin-left:auto;
     margin-right: auto;
     position:absolute;
