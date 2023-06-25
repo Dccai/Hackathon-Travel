@@ -31,6 +31,8 @@ export class MainPage extends React.Component{
         this.handleRestSubmit=this.handleRestSubmit.bind(this);
         this.handleRentClick=this.handleRentClick.bind(this);
         this.handleRentSubmit=this.handleRentSubmit.bind(this);
+        this.handleCalendarClick=this.handleCalendarClick.bind(this);
+        this.handleCalenSubmit=this.handleCalenSubmit.bind(this);
     }
     componentDidMount(){
 this.nodeBearer.current=new Map();
@@ -83,6 +85,26 @@ this.deletedNodes.current=[];
         d.onclick=function(e){e.currentTarget.parentNode.remove(); };
         d.innerHTML="Delete";
         parent.appendChild(d);
+   }
+   handleCalenSubmit(event){
+    event.preventDefault();
+    this.formPlaceHolder=new FormData(event.currentTarget);
+    this.formEntries=Object.fromEntries(this.formPlaceHolder);
+    var parent=event.currentTarget.parentNode;
+    event.currentTarget.remove();
+    for (var key in this.formEntries){
+        if(this.formEntries[key].length!=0){
+        var b=document.createElement('li');
+        b.innerHTML=`${key}: ${this.formEntries[key]}`;
+        parent.appendChild(b);
+        
+        }
+    }
+    var d=document.createElement('button');
+    d.id=(this.state.travelBlocksToAdd.length-1).toString();
+    d.onclick=function(e){e.currentTarget.parentNode.remove(); };
+    d.innerHTML="Delete";
+    parent.appendChild(d);
    }
    handleRentSubmit(event){
     event.preventDefault();
@@ -203,6 +225,11 @@ this.deletedNodes.current=[];
         d.innerHTML="Delete";
         parent.appendChild(d);
     }
+    handleCalendarClick(){
+        this.placeholderBlock=this.state.travelBlocksToAdd;
+        this.placeholderBlock.push("calendar");
+        this.setState({travelBlocksToAdd:this.placeholderBlock});
+    }
     handleRentClick(){
         this.placeholderBlock=this.state.travelBlocksToAdd;
         this.placeholderBlock.push("rent");
@@ -246,7 +273,7 @@ this.deletedNodes.current=[];
         <h1 onClick={this.handleMenuClick}>Travel Icon Options</h1>
         <div style={{position:"static"}} id="Menu"  ><button style={{position:"relative",color:"red",top:`${this.state.menuItemLoc}px`}} onClick={this.handleTravelClick}>Travel Block</button><button style={{position:"relative",color:"blue",top:`${this.state.menuItemLoc}px`}} onClick={this.handlePhotoClick}>Picture Block</button><button style={{position:"relative",color:"green",top:`${this.state.menuItemLoc}px`}} onClick={this.handleDestinationBlock}>Destination Block</button>
         <button style={{position:"relative",color:"yellow",top:`${this.state.menuItemLoc}px`}} onClick={this.handleMealClick}>Meal Block</button><button style={{position:"relative",color:"orange",top:`${this.state.menuItemLoc}px`}} onClick={this.handleRestClick}>Place To Stay</button>
-        <button style={{position:"relative",color:"purple",top:`${this.state.menuItemLoc}px`}} onClick={this.handleRentClick}>Rental</button><button onClick={()=>{this.setState({updater:this.state.updater+1})}}>Refresher</button></div>
+        <button style={{position:"relative",color:"purple",top:`${this.state.menuItemLoc}px`}} onClick={this.handleRentClick}>Rental</button><button style={{position:"relative",color:"purple",top:`${this.state.menuItemLoc}px`}} onClick={this.handleCalendarClick}>Calender</button><button onClick={()=>{this.setState({updater:this.state.updater+1})}}>Refresher</button></div>
 <ul>{this.state.travelBlocksToAdd.map((a,h)=>{
     if(a==="travel"){
         this.nodeSetter(h);
@@ -268,6 +295,10 @@ this.deletedNodes.current=[];
         this.nodeSetter(h);
         return (<Draggable ><li className="rentBlock"key={h}><div id={h} onClick={this.nodeConnector}  style={{borderRadius:"50%",backgroundColor:"black",width:"50px",height:'50px',marginLeft:"auto",marginRight:"auto",position:'relative',top:"-20px"}}>  </div><h1>Rental</h1><form onSubmit={this.handleRentSubmit}><label htmlFor="Place for Rental">Place to Rent</label><input name="Place for Rental" type="text"></input><label htmlFor="Rental Address">Rental Address</label><input name="Rental Address" type="text"></input><label htmlFor="What to Rent?">What to Rent?</label><input type="text" name="What to Rent?"></input><label htmlFor="Rent Price">Rent Price</label><input name="Rent Price" type="text"></input><label htmlFor="Rent Time">Rent Time</label><input type="text" name="Rent Time"></input><input type="submit"id="BUTTON"></input></form></li></Draggable>);
     }
+    else if(a==="calendar"){
+        this.nodeSetter(h);
+        return (<Draggable ><li className="calendBlock"key={h}><div id={h} onClick={this.nodeConnector}  style={{borderRadius:"50%",backgroundColor:"black",width:"50px",height:'50px',marginLeft:"auto",marginRight:"auto",position:'relative',top:"-20px"}}>  </div><h1>Calendar</h1><form onSubmit={this.handleCalenSubmit}><label htmlFor="Date">Date</label><input name="Date" type="text"></input><label htmlFor="Day of the Trip">Day of the Trip</label><input name="Day of the Trip" type="number" ></input><input type="submit"></input></form></li></Draggable>);
+    }
     else{
         this.nodeSetter(h);
         return (<Draggable ><li className="destBlock"key={h}><div id={h} onClick={this.nodeConnector}  style={{borderRadius:"50%",backgroundColor:"black",width:"50px",height:'50px',marginLeft:"auto",marginRight:"auto",position:'relative',top:"-20px"}}>  </div><h1>Destination</h1><form onSubmit={this.handleSightSeeingSubmit}><label htmlFor="SightSeeing Site">Site Photo</label><input name="SightSeeing Site" type="text"></input><label htmlFor="Tickets and Prices">Tickets and Prices</label><input name="Tickets and Prices" type="text"></input><input type="submit"id="BUTTON"></input></form></li></Draggable>);
@@ -275,7 +306,9 @@ this.deletedNodes.current=[];
 })}</ul>
  {this.spawnConnections()}{this.nodeArray.map(z=>{
     if(document.getElementById(z[0])!==null &&document.getElementById(z[1])!==null){
+        if(z[0]!==z[1]){
     return <Xwrapper><Xarrow start={z[0]} end={z[1]}/></Xwrapper>;
+        }
     }
     })}
 </>
