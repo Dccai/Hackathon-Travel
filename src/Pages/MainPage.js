@@ -207,7 +207,7 @@ this.deletedNodes.current=[];
         event.currentTarget.remove();
         for (var key in this.formEntries){
             if(this.formEntries[key].length!=0){
-            if(key==="Pictures"){
+            if(key==="Picture Url"){
                 var b=document.createElement('img');
                 b.src=this.formEntries[key];
                 parent.appendChild(b);
