@@ -301,7 +301,7 @@ this.deletedNodes.current=[];
     }
     else{
         this.nodeSetter(h);
-        return (<Draggable ><li className="destBlock"key={h}><div id={h} onClick={this.nodeConnector}  style={{borderRadius:"50%",backgroundColor:"black",width:"50px",height:'50px',marginLeft:"auto",marginRight:"auto",position:'relative',top:"-20px"}}>  </div><h1>Destination</h1><form onSubmit={this.handleSightSeeingSubmit}><label htmlFor="SightSeeing Site">Site Photo</label><input name="SightSeeing Site" type="text"></input><label htmlFor="Tickets and Prices">Tickets and Prices</label><input name="Tickets and Prices" type="text"></input><input type="submit"id="BUTTON"></input></form></li></Draggable>);
+        return (<Draggable ><li className="destBlock"key={h}><div id={h} onClick={this.nodeConnector}  style={{borderRadius:"50%",backgroundColor:"black",width:"50px",height:'50px',marginLeft:"auto",marginRight:"auto",position:'relative',top:"-20px"}}>  </div><h1>Destination</h1><form onSubmit={this.handleSightSeeingSubmit}><label htmlFor="Site Name">Site Name</label><input type="text" name="Site Name"></input><label htmlFor="SightSeeing Site">Site Photo</label><input name="SightSeeing Site" type="text"></input><label htmlFor="Tickets and Prices">Tickets and Prices</label><input name="Tickets and Prices" type="text"></input><input type="submit"id="BUTTON"></input></form></li></Draggable>);
         }
 })}</ul>
  {this.spawnConnections()}{this.nodeArray.map(z=>{
