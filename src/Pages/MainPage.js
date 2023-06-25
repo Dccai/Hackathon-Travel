@@ -1,8 +1,8 @@
-
 import React from "react";
 import Draggable,{DraggableCore} from "react-draggable";
-import Xarrow,{Xwrapper} from "react-xarrows";
+import Xarrow,{Xwrapper,useXarrow} from "react-xarrows";
 import "./MainPage.css";
+
 export class MainPage extends React.Component{
     constructor(props){
         super(props);
@@ -15,11 +15,12 @@ export class MainPage extends React.Component{
         this.handleSightSeeingSubmit=this.handleSightSeeingSubmit.bind(this);
         this.nodeConnector=this.nodeConnector.bind(this);
         this.nodeSetter=this.nodeSetter.bind(this);
-        this.state={menuVisibility:0,travelBlocksToAdd:["travel","travel"],menuItemLoc:0};
+        this.state={menuVisibility:0,travelBlocksToAdd:[],menuItemLoc:0};
         this.placeholderBlock=undefined;
         this.formData=undefined;
         this.formEntries=undefined;
         this.nodeBearer=React.createRef();
+        this.deletedNodes=React.createRef();
         this.nodes=React.createRef();
         this.canSetNode=React.createRef();
         this.nodeArray=[]
@@ -29,6 +30,7 @@ export class MainPage extends React.Component{
 this.nodeBearer.current=new Map();
 this.nodes.current=[];
 this.canSetNode.current=true;
+this.deletedNodes.current=[];
     }
     spawnConnections(){
         if(this.nodeBearer.current!==null){
@@ -52,7 +54,6 @@ this.canSetNode.current=true;
     else{
         
         this.nodeBearer.current.get(this.nodes.current[0]).neighbours.push(event.target.id.toString());
-        //this.nodeBearer.current.get(this.nodes.current[0].toString()).push(event.target.id);
         this.canSetNode.current=true;
         this.nodes.current.pop();
     }
@@ -78,7 +79,8 @@ this.canSetNode.current=true;
             }
         }
         var d=document.createElement('button');
-        d.onclick=function(e){e.currentTarget.parentNode.remove()};
+        d.id=(this.state.travelBlocksToAdd.length-1).toString();
+        d.onclick=function(e){e.currentTarget.parentNode.remove(); };
         d.innerHTML="Delete";
         parent.appendChild(d);
     }
@@ -103,7 +105,8 @@ this.canSetNode.current=true;
             }
         }
         var d=document.createElement('button');
-        d.onclick=function(e){e.currentTarget.parentNode.remove()};
+        d.id=(this.state.travelBlocksToAdd.length-1).toString();
+        d.onclick=function(e){e.currentTarget.parentNode.remove();};
         d.innerHTML="Delete";
         parent.appendChild(d);   
     }
@@ -128,7 +131,8 @@ this.canSetNode.current=true;
             }
         }
         var d=document.createElement('button');
-        d.onclick=function(e){e.currentTarget.parentNode.remove()};
+        d.id=(this.state.travelBlocksToAdd.length-1).toString();
+        d.onclick=function(e){e.currentTarget.parentNode.remove();};
         d.innerHTML="Delete";
         parent.appendChild(d);
     }
@@ -166,12 +170,22 @@ this.canSetNode.current=true;
     else if(a==="photo"){return (<Draggable><li className="photoBlock"key={h}><h1>Image</h1><form onSubmit={this.handlePhotoSubmit}><label htmlFor="Pictures"></label><input name="Pictures" type="text"></input></form></li></Draggable>);}
     else{
         this.nodeSetter(h);
-        return (<Draggable><li className="destBlock"key={h}><div id={h} onClick={this.nodeConnector} onDrag={this.arrowUpdater} onStop={this.arrowUpdater} style={{borderRadius:"50%",backgroundColor:"black",width:"50px",height:'50px',marginLeft:"auto",marginRight:"auto",position:'relative',top:"-20px"}}>  </div><h1>Destination</h1><form onSubmit={this.handleSightSeeingSubmit}><label htmlFor="SightSeeing Site">Site Photo</label><input name="SightSeeing Site" type="text"></input><label htmlFor="Tickets and Prices">Tickets and Prices</label><input name="Tickets and Prices" type="text"></input><input type="submit"></input></form></li></Draggable>);}
+        return (<Draggable><li className="destBlock"key={h}><div id={h} onClick={this.nodeConnector}  style={{borderRadius:"50%",backgroundColor:"black",width:"50px",height:'50px',marginLeft:"auto",marginRight:"auto",position:'relative',top:"-20px"}}>  </div><h1>Destination</h1><form onSubmit={this.handleSightSeeingSubmit}><label htmlFor="SightSeeing Site">Site Photo</label><input name="SightSeeing Site" type="text"></input><label htmlFor="Tickets and Prices">Tickets and Prices</label><input name="Tickets and Prices" type="text"></input><input type="submit"></input></form></li></Draggable>);
+        }
 })}</ul>
- {this.spawnConnections()}{this.nodeArray.map(z=>{return <Xwrapper><Xarrow start={z[0]} end={z[1]}/></Xwrapper>;})}
+ {this.spawnConnections()}{this.nodeArray.map(z=>{
+    //if(this.nodeBearer.current.get())
+    if(document.getElementById(z[0])!==null &&document.getElementById(z[1])!==null){
+    return <Xwrapper><Xarrow start={z[0]} end={z[1]}/></Xwrapper>;
+    }
+    })}
 </>
         );
 
     }
 
    }
+   const PhotoDraggable=(h)=>{
+    const Updater=useXarrow();
+   return (<Draggable><li className="destBlock"key={h}><div id={h} onClick={this.nodeConnector}  style={{borderRadius:"50%",backgroundColor:"black",width:"50px",height:'50px',marginLeft:"auto",marginRight:"auto",position:'relative',top:"-20px"}}>  </div><h1>Destination</h1><form onSubmit={this.handleSightSeeingSubmit}><label htmlFor="SightSeeing Site">Site Photo</label><input name="SightSeeing Site" type="text"></input><label htmlFor="Tickets and Prices">Tickets and Prices</label><input name="Tickets and Prices" type="text"></input><input type="submit"></input></form></li></Draggable>);
+   };
