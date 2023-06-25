@@ -2,11 +2,17 @@ ul{
     list-style-type:none;
 }
 li{
-    list-style-type:square;
+    list-style-type:none;
+    padding: 15px 15px;
+    border-radius: 10%;
     
 }
 ul input {
 text-overflow:inherit;
+display:block;
+padding:5px 5px;
+margin-right:auto;
+margin-left:auto;
 }
 .spawnIn{
     position: absolute;
@@ -38,4 +44,31 @@ text-overflow:inherit;
     margin-right: auto;
     position:absolute;
     background-color: green;
+}
+.mealBlock{
+    list-style-type:none;
+    width:100;
+    top:5%;
+    margin-left:auto;
+    margin-right: auto;
+    position:absolute;
+    background-color: yellow;
+}
+.restBlock{
+    list-style-type:none;
+    width:100;
+    top:5%;
+    margin-left:auto;
+    margin-right: auto;
+    position:absolute;
+    background-color: orange; 
+}
+.rentBlock{
+    list-style-type:none;
+    width:100;
+    top:5%;
+    margin-left:auto;
+    margin-right: auto;
+    position:absolute;
+    background-color: purple;  
 }
